@@ -73,7 +73,7 @@ public class GetCapacityForExchangeRestIntegrationTest extends YatspecTest {
         log("Response: Status Code", responseStatusCode);
     }
 
-    private void thenTheCapacityIsReturned() {
+    private void thenTheCapacityIsReturned() throws Exception {
         log("Response: Content", formatJson(responseContent));
         assertThat(responseStatusCode).isEqualTo(200);
 

@@ -1,16 +1,18 @@
 package com.clean.example.endtoend;
 
 import com.clean.example.dataproviders.network.deviceclient.DeviceClient;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import static org.mockito.Mockito.mock;
 
-@Configuration
+@TestConfiguration
 public class MocksConfigurationForEndToEndTests {
 
     @Bean
-    public DeviceClient deviceClient() {
+    @Primary
+    public DeviceClient mockDeviceClient() {
         return mock(DeviceClient.class);
     }
 

@@ -55,7 +55,7 @@ public class GetBroadbandAccessDeviceDetailsEndToEndTest extends EndToEndYatspec
 
     private void whenTheApiToGetTheDeviceDetailsIsCalledForThatDevice() throws UnirestException {
         String apiPath = GetBroadbandAccessDeviceEndpoint.API_PATH.replace("{hostname}", HOSTNAME);
-        String apiUrl = "http://localhost:8080" + apiPath;
+        String apiUrl = "http://localhost:" + port + apiPath;
         log("API Url", apiUrl);
 
         HttpResponse<String> httpResponse = Unirest.get(apiUrl).asString();

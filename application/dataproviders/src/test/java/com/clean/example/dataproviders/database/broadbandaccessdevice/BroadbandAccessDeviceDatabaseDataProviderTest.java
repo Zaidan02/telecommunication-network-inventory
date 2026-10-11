@@ -16,8 +16,8 @@ import static com.clean.example.core.entity.DeviceType.ADSL;
 import static com.clean.example.core.entity.DeviceType.FIBRE;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 public class BroadbandAccessDeviceDatabaseDataProviderTest {
@@ -120,7 +120,7 @@ public class BroadbandAccessDeviceDatabaseDataProviderTest {
 
     private void givenThereIsADevice(String exchangeCode, String exchangeName, String exchangePostcode, String hostname, String serialNumber, DeviceType type, int availablePorts) {
         Map<String, Object> details = detailsForDevice(exchangeCode, exchangeName, exchangePostcode, hostname, serialNumber, type, availablePorts);
-        when(jdbcTemplate.queryForMap(anyString(), anyVararg())).thenReturn(details);
+        when(jdbcTemplate.queryForMap(anyString(), any(Object[].class))).thenReturn(details);
     }
 
     private Map<String, Object> detailsForDevice(String exchangeCode, String exchangeName, String exchangePostcode, String hostname, String serialNumber, DeviceType type, int availablePorts) {
@@ -136,7 +136,7 @@ public class BroadbandAccessDeviceDatabaseDataProviderTest {
     }
 
     private void givenThereIsntADevice() {
-        when(jdbcTemplate.queryForMap(anyString(), anyVararg())).thenThrow(new IncorrectResultSizeDataAccessException(1));
+        when(jdbcTemplate.queryForMap(anyString(), any(Object[].class))).thenThrow(new IncorrectResultSizeDataAccessException(1));
     }
 
     private void thereThereAreDevices(String... hostnames) {

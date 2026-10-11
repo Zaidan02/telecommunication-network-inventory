@@ -94,7 +94,7 @@ public class GetCapacityForExchangeEndToEndTest extends EndToEndYatspecTest {
 
     private void whenTheCapacityIsRetrievedForExchange(String exchangeCode) throws UnirestException {
         String apiPath = GetCapacityForExchangeEndpoint.API_PATH.replace("{exchangeCode}", exchangeCode);
-        String apiUrl = "http://localhost:8080" + apiPath;
+        String apiUrl = "http://localhost:" + port + apiPath;
         log("API Url", apiUrl);
 
         HttpResponse<String> httpResponse = Unirest.get(apiUrl).asString();

@@ -1,8 +1,8 @@
 description = "Retrieve data from whatever source (db, 3rd party, etc.)"
 
 dependencies {
-    compile project(":application:core")
-    compile libs.database
+    api project(":application:core")
+    api libs.database
 
-    testCompile libs.unit_tests
+    testImplementation libs.unit_tests
 }

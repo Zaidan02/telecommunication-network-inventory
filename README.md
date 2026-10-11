@@ -115,6 +115,19 @@ Of course, it comes at a cost:
 ***
 
 ## Building and Running the application
+This checkout has been updated to **Java 22**, **Gradle 8.14.3**, and **Spring Boot 3.5.16**. The original Clean Architecture modules and business rules are preserved.
+
+Install a **JDK 22** and check that your terminal uses it:
+```
+java -version
+```
+On macOS, if you have several JDKs installed, select Java 22 for the current terminal:
+```
+export JAVA_HOME=$(/usr/libexec/java_home -v 22)
+export PATH="$JAVA_HOME/bin:$PATH"
+```
+You do not need to install Gradle separately: `gradlew` downloads the pinned version. The app includes an in-memory H2 database with example data and a fake network-device client, so no database server or physical telecom equipment is required. The first build needs internet access to download dependencies.
+
 * building the application:
 ```
 ./gradlew clean build
@@ -129,7 +142,7 @@ java -jar application/build/clean-architecture-example.jar
 ```
 * running the application (in the IDE): open and run the main class
 ```
-com.clean.example.configuration.Application
+com.clean.example.Application
 ```
 * more info on available tasks:
 ```
@@ -138,10 +151,21 @@ com.clean.example.configuration.Application
 
 Once the application is running, you can:
 * open <http://localhost:8080/broadbandaccessdevice/device1.exlon.com/> and you should see some json
+* open <http://localhost:8080/exchange/EXLON/capacity> to check ADSL and fibre capacity
+* open <http://localhost:8080/manage/health> to check application health
 * look at the log and you should see a scheduled job running every 5 seconds (it prints something like _"Job Starting: ReconcileBroadbandAccessDeviceJob..."_)
 
+This example exposes REST endpoints, rather than a graphical dashboard. Stop the running app with `Ctrl+C`. The example data resets when the app restarts.
+
+To run all tests without packaging the application:
+```
+./gradlew test
+```
+
 ##### Importing the project in IntelliJ
-* Simply open the _build.gradle_ file and IntelliJ should load everything
+* Open the repository as a Gradle project and use the Gradle wrapper.
+* Set both the Project SDK and Gradle JVM to JDK 22.
+* Run `com.clean.example.Application`, or use `./gradlew bootRun` in the terminal.
 
 ##### Importing the project in Eclipse
 * Make sure you've installed the Gradle plugin

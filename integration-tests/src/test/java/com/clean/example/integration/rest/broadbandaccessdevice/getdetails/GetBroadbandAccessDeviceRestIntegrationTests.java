@@ -79,7 +79,7 @@ public class GetBroadbandAccessDeviceRestIntegrationTests extends YatspecTest {
         log("Response: Status Code", responseStatusCode);
     }
 
-    private void thenTheDetailsAreReturned() {
+    private void thenTheDetailsAreReturned() throws Exception {
         log("Response: Content", formatJson(responseContent));
         assertThat(responseStatusCode).isEqualTo(200);
 

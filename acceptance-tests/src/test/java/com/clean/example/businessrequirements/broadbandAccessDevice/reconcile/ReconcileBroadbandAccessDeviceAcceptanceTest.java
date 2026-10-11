@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @Notes("Reconciles information about Broadband Access Devices between what is stored in our model and the data that comes back from the actual device")
